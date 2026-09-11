@@ -1,0 +1,5 @@
+print("Hallo!")
+print("Program ini menghasilkan Data Diri : ")
+print("Nama : Nabil Fikri \nNIM : 2511533011")
+print("Department : Informatika \nFakultas : Teknologi Informasi")
+print("Mahasiswa angkatan 2025 di Universitas Andalas")
