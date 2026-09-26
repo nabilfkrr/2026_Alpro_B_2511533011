@@ -1,0 +1,93 @@
+print("=== SISTEM LOKET ALPRO ADVENTURE PARK ===")
+
+nama_3011       = input("Masukkan Nama Pengunjung: ")
+umur_3011       = int(input("Input umur anda: "))
+sim_3011        = input("Apakah Anda Sudah Punya SIM C (y/t): ").strip().lower()[0]
+print()
+
+print("Pilihan Paket Wahana (1-5):")
+print("  1. Safari Rimba (Rp 50,000)")
+print("  2. Arung Jeram (Rp 75,000)")
+print("  3. Motor ATV Ekstrim (Rp 120,000)")
+print("  4. Roller Coaster Kilat (Rp 100,000)")
+print("  5. All-Access VIP (Rp 220,000)")
+
+paket_3011       = int(input("Masukkan nomor paket (1-5): "))
+jumlah_tiket_3011 = int(input("Masukkan jumlah tiket: "))
+is_member_3011   = input("Apakah Anda member? (y/t): ").strip().lower()
+kode_promo_3011  = input("Apakah kode promo valid? (y/t): ").strip().lower()
+
+if jumlah_tiket_3011 <= 0:
+    print("Peringatan: Kuota tiket tidak valid!")
+
+nama_wahana_3011  = ""
+harga_satuan_3011 = 0
+
+match paket_3011:
+    case 1:
+        nama_wahana_3011  = "Wahana Safari Rimba"
+        harga_satuan_3011 = 50000
+    case 2:
+        nama_wahana_3011  = "Wahana Arung Jeram"
+        harga_satuan_3011 = 75000
+    case 3:
+        nama_wahana_3011  = "Wahana Motor ATV Ekstrim"
+        harga_satuan_3011 = 120000
+    case 4:
+        nama_wahana_3011  = "Wahana Roller Coaster Kilat"
+        harga_satuan_3011 = 100000
+    case 5:
+        nama_wahana_3011  = "Wahana All-Access VIP"
+        harga_satuan_3011 = 220000
+    case _:
+        print("Paket wahana tidak valid!")
+
+print()
+print("--- KELAYAKAN PENGENDARA WAHANA ---")
+
+if paket_3011 == 3:
+    if umur_3011 >= 17 and sim_3011 == 'y':
+        print("Status Akses: Anda sudah dewasa dan boleh mengendarai ATV sendiri.")
+    elif umur_3011 >= 17 and sim_3011 != 'y':
+        print("Status Akses: Anda sudah dewasa tetapi tidak boleh bawa motor ATV (wajib didampingi instruktur).")
+    elif umur_3011 < 17 and sim_3011 == 'y':
+        print("Status Akses: Identitas tidak valid: Belum cukup umur memiliki SIM.")
+    else:
+        print("Status Akses: Anda belum cukup umur dan tidak boleh bawa motor ATV.")
+else:
+    # if-else sederhana untuk paket selain 3
+    if umur_3011 >= 10:
+        print("Status Akses: Anda memenuhi syarat usia untuk wahana ini.")
+    else:
+        print("Status Akses: Anda belum memenuhi syarat usia minimum (10 tahun) untuk wahana ini.")
+
+subtotal_3011          = harga_satuan_3011 * jumlah_tiket_3011
+total_diskon_persen_3011 = 0
+
+if subtotal_3011 >= 200000:
+    total_diskon_persen_3011 += 10
+
+if is_member_3011 in ['y', 'ya']:
+    total_diskon_persen_3011 += 5
+
+if kode_promo_3011 in ['y', 'ya']:
+    total_diskon_persen_3011 += 15
+
+if jumlah_tiket_3011 >= 5:
+    total_diskon_persen_3011 += 5
+
+nominal_diskon_3011 = subtotal_3011 * (total_diskon_persen_3011 / 100)
+total_bayar_3011    = subtotal_3011 - nominal_diskon_3011
+
+if total_bayar_3011 > 300000:
+    catatan_3011 = "Selamat! Anda berhak mendapatkan Souvenir Gratis."
+else:
+    catatan_3011 = "Terima kasih telah berkunjung."
+
+print()
+print("--- Rincian Pembayaran ---")
+print(f"Subtotal Belanja: Rp {subtotal_3011:,.0f}")
+print(f"Total Diskon: {total_diskon_persen_3011}% (Rp {nominal_diskon_3011:,.0f})")
+print(f"Total Bayar: Rp {total_bayar_3011:,.0f}")
+print(f"Catatan Layanan: {catatan_3011}")
+print("Program Selesai")
